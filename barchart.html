@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combined Horizontal Bar Chart</title>
+  <style>
+    body {
+      height: 50px; /* Adjust the height as needed */
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <canvas id="myChart" width="700" height='150'></canvas>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+  <script>
+    // Sample data for two groups
+    const data = {
+      labels: ['Progress'],
+      datasets: [
+        {
+          label: 'Human Fetal and Adult Retina',
+          data: [62496, 62496], // Values out of 100%
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)', // Group 1 color
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+          ],
+          borderWidth: 1,
+          barThickness: 25, // Adjust the bar thickness for group 1
+          borderRadius: 10, // Adjust the border radius for group 1
+        },
+        {
+          label: 'Human Reprogrammed Muller Glia',
+          data: [3616, 3616], // Values out of 100%
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.5)', // Group 2 color
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+          ],
+          borderWidth: 1,
+          barThickness: 25, // Adjust the bar thickness for group 2
+          borderRadius: 10, // Adjust the border radius for group 2
+        }
+      ]
+    };
+
+    // Configuration for the chart
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        indexAxis: 'y', // Horizontal bars
+        scales: {
+          x: {
+            stacked: true,
+            callbacks: {
+              label: function (value, index, values) {
+                return value + ' cells';
+              }
+            }
+          },
+          y: {
+            stacked: true
+          }
+        },
+        layout: {
+          padding: {
+            left: 20, // Adjust the left padding as needed
+          }
+        }
+      }
+    };
+
+    // Render the chart
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+</body>
+</html>
